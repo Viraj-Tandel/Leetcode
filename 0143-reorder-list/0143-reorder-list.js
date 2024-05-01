@@ -35,7 +35,7 @@ var reorderList = function (head) {
         }
         cnt++;
     }
-    if(!second)
+    if (!second)
         last.next = first;
     else
         last.next = second;
