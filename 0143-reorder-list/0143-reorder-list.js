@@ -16,29 +16,33 @@ var reorderList = function (head) {
     let middleNode = findMiddle(head);
     secondHalf = reverseLinkedList(middleNode.next);
     middleNode.next = null;
-    let cnt = 0;
+    // let cnt = 0;
     let first = head;
     let second = secondHalf;
-    let third = last = null;
-
-    third = last = first;
-    first = first.next;
     while (first  && second ) {
-        if (cnt % 2 !== 0) {
-            last.next = first;
-            last = first;
-            first = first.next;
-        } else {
-            last.next = second;
-            last = second;
-            second = second.next;
-        }
-        cnt++;
+        // if (cnt % 2 !== 0) {
+        //     last.next = first;
+        //     last = first;
+        //     first = first.next;
+        // } else {
+        //     last.next = second;
+        //     last = second;
+        //     second = second.next;
+        // }
+        // cnt++;
+        let nextFirst = first.next;
+        let nextSecond = second.next;
+
+        first.next = second;
+        second.next = nextFirst;
+
+        first = nextFirst;
+        second = nextSecond;
     }
-    if (!second)
-        last.next = first;
-    else
-        last.next = second;
+    // if (!second)
+    //     last.next = first;
+    // else
+        // last.next = second;
 };
 
 function reverseLinkedList(head) {
