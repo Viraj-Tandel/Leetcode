@@ -23,7 +23,7 @@ var reorderList = function (head) {
 
     third = last = first;
     first = first.next;
-    while (first !== 0 && second !== null) {
+    while (first  && second ) {
         if (cnt % 2 !== 0) {
             last.next = first;
             last = first;
