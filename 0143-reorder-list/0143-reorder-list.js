@@ -11,9 +11,10 @@ var reorderList = function (head) {
     middleNode.next = null;
     let first = head;
     let second = secondHalf;
+    let nextFirst,nextSecond;
     while (first && second) {
-        let nextFirst = first.next;
-        let nextSecond = second.next;
+        nextFirst = first.next;
+        nextSecond = second.next;
 
         first.next = second;
         second.next = nextFirst;
