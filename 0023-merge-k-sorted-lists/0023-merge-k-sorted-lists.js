@@ -26,56 +26,56 @@ var mergeKLists = function (lists) {
 };
 
 // function to merge the two sorted linked list
-function mergeTwoList(list1, list2) {
-    let third = null;
-    let last = null;
-    let first = list1;
-    let second = list2;
+function mergeTwoList(l1, l2) {
+    // let third = null;
+    // let last = null;
+    // let first = list1;
+    // let second = list2;
 
-    if (!first && !second)
-        return null;
+    // if (!first && !second)
+    //     return null;
 
-    if (!first)
-        return second;
+    // if (!first)
+    //     return second;
 
-    if (!second)
-        return first;
+    // if (!second)
+    //     return first;
 
 
-    if (first.val < second.val) {
-        third = last = first;
-        first = first.next;
-        last.next = null;
-    } else {
-        third = last = second;
-        second = second.next;
-        last.next = null;
-    }
+    // if (first.val < second.val) {
+    //     third = last = first;
+    //     first = first.next;
+    //     last.next = null;
+    // } else {
+    //     third = last = second;
+    //     second = second.next;
+    //     last.next = null;
+    // }
 
-    while (first && second) {
-        if (first.val < second.val) {
-            last.next = first;
-            last = first;
-            first = first.next;
-            last.next = null;
-        } else {
-            last.next = second;
-            last = second;
-            second = second.next;
-            last.next = null;
-        }
-    }
+    // while (first && second) {
+    //     if (first.val < second.val) {
+    //         last.next = first;
+    //         last = first;
+    //         first = first.next;
+    //         last.next = null;
+    //     } else {
+    //         last.next = second;
+    //         last = second;
+    //         second = second.next;
+    //         last.next = null;
+    //     }
+    // }
 
-    if (!first)
-        last.next = second;
+    // if (!first)
+    //     last.next = second;
 
-    if (!second)
-        last.next = first;
+    // if (!second)
+    //     last.next = first;
 
-    // console.log("Merge Linked List-------->", third);
-    return third;
-
-    // if (!l1) return l2;
+    // // console.log("Merge Linked List-------->", third);
+    // return third;
+    if (!l1 && !l2) return null;
+    if (!l1) return l2;
     if (!l2) return l1;
 
     let dummy = new ListNode(-1);
@@ -96,4 +96,5 @@ function mergeTwoList(list1, list2) {
     if (l2) tail.next = l2;
 
     return dummy.next;
+
 }
