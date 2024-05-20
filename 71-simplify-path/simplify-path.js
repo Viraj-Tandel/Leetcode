@@ -31,17 +31,12 @@ var simplifyPath = function (path) {
 
     let resultString = "";
 
-    // * counting array length
-    // while (pathStack[cnt]) {
-    //     cnt++;
-    // }
-
     if (cnt === 0) {
         resultString = "/"
     }
 
     // * constructing string by traversing a stack
-    for (let x = cnt - 1; x >= 0; x--) {
+    for (let x = top; x >= 0; x--) {
         resultString = "/" + pathStack[x] + resultString;
     }
 
