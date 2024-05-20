@@ -12,8 +12,8 @@ var evalRPN = function (tokens) {
     for (let x = 0; tokens[x]; x++) {
         if ((tokens[x] === '+' || tokens[x] === '*' || tokens[x] === '-' || tokens[x] === '/')) {
             // TODO perform operation on first two elements of stack
-            let second = parseInt(stack.pop());
-            let first = parseInt(stack.pop());
+            let second = stack[stackTop--];
+            let first = stack[stackTop--];
             let result;
             switch (tokens[x]) {
                 case '+':
@@ -26,18 +26,18 @@ var evalRPN = function (tokens) {
                     result = first * second;
                     break;
                 case '/':
-                    if(first/second > 0)
+                    if (first / second > 0)
                         result = Math.floor(first / second);
                     else
                         result = Math.ceil(first / second);
                     break;
             }
-            stack.push(result);
+            stack[++stackTop] = result;
 
         } else {
             // TODO push into stack
-            stack.push(tokens[x]);
+            stack[++stackTop] = parseInt(tokens[x]);
         }
     }
-    return stack.pop();
+    return stack[stackTop];
 };
