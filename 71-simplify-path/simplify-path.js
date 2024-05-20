@@ -3,7 +3,7 @@
  * @return {string}
  */
 var simplifyPath = function (path) {
-    let splittedPath = path.split("/");
+    let splittedPath = splitString(path, "/");
     let pathStack = [];
     let top = -1;
     splittedPath = filterArray(splittedPath, checkEmptyEle); // * removing empty spaces and unwanted char from array
@@ -53,4 +53,22 @@ function filterArray(arr, callback) {
 // * function to check element is empty or not
 function checkEmptyEle(ele) {
     return (ele === "" || ele === ".") ? false : true;
+}
+
+// * function to split the string
+function splitString(str, seperator) { // str = Viraj_Tandel
+    let result = [];
+    let current = '';
+
+    for (let x = 0; str[x]; x++) {
+        if (str[x] === seperator) {
+            result.push(current);
+            current = "";
+        } else {
+            current += str[x];
+        }
+    }
+    result.push(current); // current = Tandel becuase separtor not found in the last interaton
+
+    return result;
 }
