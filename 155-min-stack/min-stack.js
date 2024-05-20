@@ -1,38 +1,45 @@
 
-var MinStack = function() {
+var MinStack = function () {
     this.stack = [];
-    let min = -1;
+    this.minStack = [];
 };
 
 /** 
  * @param {number} val
  * @return {void}
  */
-MinStack.prototype.push = function(val) {
-    this.stack.push(val);
-    this.min = Math.min(...this.stack);
-};
-
+MinStack.prototype.push = function (val) {
+    if (!this.stack.length) {
+        this.stack.push(val);
+        this.minStack.push(val);
+    } else {
+        this.stack.push(val);
+        this.minStack.push(Math.min(val, this.minStack[this.minStack.length - 1]));
+    }
+}
 /**
  * @return {void}
  */
-MinStack.prototype.pop = function() {
+MinStack.prototype.pop = function () {
     this.stack.pop();
-    this.min = Math.min(...this.stack);
+    this.minStack.pop();
 };
 
 /**
  * @return {number}
  */
-MinStack.prototype.top = function() {
-    return this.stack[this.stack.length-1];
+MinStack.prototype.top = function () {
+    return this.stack[this.stack.length - 1];
 };
 
 /**
  * @return {number}
  */
-MinStack.prototype.getMin = function() {
-    return this.min;
+MinStack.prototype.getMin = function () {
+    if (this.minStack.length)
+        return this.minStack[this.minStack.length - 1];
+    else
+        return this.minStack;
 };
 
 /** 
