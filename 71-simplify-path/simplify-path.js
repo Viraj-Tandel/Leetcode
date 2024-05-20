@@ -10,11 +10,21 @@ var simplifyPath = function (path) {
 
 
     for (let x = 0; splittedPath[x] || splittedPath[x] == ""; x++) {
+
+        if (splittedPath[x] === "" || splittedPath[x] === ".") {
+            continue;
+        }
+
         if (splittedPath[x] === ".." && top >= 0) {
             // TODO POP from stack
             pathStack[top] = undefined;
             top--;
-        } else if (splittedPath[x] !== "" && splittedPath[x] !== "." && splittedPath[x] !== "..") {
+        } 
+        // else if (splittedPath[x] !== "" && splittedPath[x] !== "." && splittedPath[x] !== "..") {
+        //     top++;
+        //     pathStack[top] = splittedPath[x];
+        // }
+        else if(splittedPath[x] !== '..') {
             top++;
             pathStack[top] = splittedPath[x];
         }
