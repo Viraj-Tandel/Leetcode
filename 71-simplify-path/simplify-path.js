@@ -48,13 +48,15 @@ var simplifyPath = function(path) {
 function splitString(str, separator) {
     let result = [];
     let current = '';
+    let resultLength = 0;
 
     // Iterate over the string characters
     for (let x = 0; str[x]; x++) {
         // Split the string when the separator is encountered
         if (str[x] === separator) {
-            result.push(current);
+            result[resultLength] = current;
             current = "";
+            resultLength++;
         } else {
             // Build the current component
             current += str[x];
@@ -62,7 +64,7 @@ function splitString(str, separator) {
     }
 
     // Add the last component to the result array
-    result.push(current);
+    result[resultLength] = current;
 
     return result;
 }
