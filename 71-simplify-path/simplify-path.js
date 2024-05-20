@@ -6,6 +6,7 @@ var simplifyPath = function (path) {
     let splittedPath = splitString(path, "/");
     let pathStack = [];
     let top = -1;
+    let cnt = 0;
     splittedPath = filterArray(splittedPath, checkEmptyEle); // * removing empty spaces and unwanted char from array
 
 
@@ -19,24 +20,21 @@ var simplifyPath = function (path) {
             // TODO POP from stack
             pathStack[top] = undefined;
             top--;
-        } 
-        // else if (splittedPath[x] !== "" && splittedPath[x] !== "." && splittedPath[x] !== "..") {
-        //     top++;
-        //     pathStack[top] = splittedPath[x];
-        // }
-        else if(splittedPath[x] !== '..') {
+            cnt--;
+        }
+        else if (splittedPath[x] !== '..') {
             top++;
+            cnt++;
             pathStack[top] = splittedPath[x];
         }
     }
 
     let resultString = "";
-    let cnt = 0;
 
     // * counting array length
-    while (pathStack[cnt]) {
-        cnt++;
-    }
+    // while (pathStack[cnt]) {
+    //     cnt++;
+    // }
 
     if (cnt === 0) {
         resultString = "/"
