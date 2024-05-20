@@ -19,6 +19,7 @@ var simplifyPath = function (path) {
             top--;
         }
         else if (splittedPath[x] !== '..') {
+            // TODO PUSH into stack
             top++;
             pathStack[top] = splittedPath[x];
         }
@@ -33,11 +34,6 @@ var simplifyPath = function (path) {
 
     return resultString === "" ? "/" : resultString;
 };
-
-// * function to check element is empty or not
-function checkEmptyEle(ele) {
-    return (ele === "" || ele === ".") ? false : true;
-}
 
 // * function to split the string
 function splitString(str, seperator) { // str = Viraj_Tandel
