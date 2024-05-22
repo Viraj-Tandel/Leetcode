@@ -17,14 +17,16 @@ var calPoints = function (operations) {
             switch (op) {
                 case 'C':
                     // resultStack.pop();
-                    resultStack[top] = null;
-                    top--;
+                    if (top >= 0) {
+                        top--;
+                    }
                     break;
                 case 'D':
-                    resultStack.push(resultStack[resultStack.length - 1] * 2)
-                    // resultStack[resultStack.length-1] = resultStack[resultStack.length-1]*2;
-                    let score = resultStack[top] * 2;
-                    resultStack[++top] = score;
+                    if (top >= 0) {
+                        let score = resultStack[top] * 2;
+                        top++;
+                        resultStack[top] = score;
+                    }
                     break;
                 case '+':
                     let score1 = resultStack[top];
@@ -32,17 +34,14 @@ var calPoints = function (operations) {
                     resultStack[++top] = score1 + score2;
             }
         } else {
-            // TODO push on stack
-            // resultStack.push(Number(operations[x]));
             resultStack[++top] = Number(op);
         }
     }
 
     let sum = 0;
 
-    for (let x = resultStack.length - 1; x >= 0; x--) {
-        let ele = resultStack[x];
-        if (ele) sum += ele;
+    for (let x = top; x >= 0; x--) {
+        sum += resultStack[x];
     }
 
     return sum;
