@@ -12,8 +12,6 @@ var calPoints = function (operations) {
 
     for (let x = 0; operations[x]; x++) {
         let op = operations[x];
-        if (op === '+' || op === 'D' || op === 'C') {
-            // TODO perform operation
             switch (op) {
                 case 'C':
                     if (top >= 0) {
@@ -34,10 +32,9 @@ var calPoints = function (operations) {
                         resultStack[++top] = score1 + score2;
                     }
                     break;
+                default:
+                    resultStack[++top] = Number(op);
             }
-        } else {
-            resultStack[++top] = Number(op);
-        }
     }
 
     let sum = 0;
