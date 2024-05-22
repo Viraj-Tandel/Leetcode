@@ -16,7 +16,6 @@ var calPoints = function (operations) {
             // TODO perform operation
             switch (op) {
                 case 'C':
-                    // resultStack.pop();
                     if (top >= 0) {
                         top--;
                     }
@@ -29,9 +28,12 @@ var calPoints = function (operations) {
                     }
                     break;
                 case '+':
-                    let score1 = resultStack[top];
-                    let score2 = resultStack[top - 1];
-                    resultStack[++top] = score1 + score2;
+                    if (top >= 1) { // Ensure there are at least two elements in the stack
+                        let score1 = resultStack[top];
+                        let score2 = resultStack[top - 1];
+                        resultStack[++top] = score1 + score2;
+                    }
+                    break;
             }
         } else {
             resultStack[++top] = Number(op);
