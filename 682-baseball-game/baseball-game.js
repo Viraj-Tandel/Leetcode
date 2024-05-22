@@ -11,9 +11,10 @@ var calPoints = function (operations) {
     let top = -1;
 
     for (let x = 0; operations[x]; x++) {
-        if (operations[x] === '+' || operations[x] === 'D' || operations[x] === 'C') {
+        let op = operations[x];
+        if (op === '+' || op === 'D' || op === 'C') {
             // TODO perform operation
-            switch (operations[x]) {
+            switch (op) {
                 case 'C':
                     // resultStack.pop();
                     resultStack[top] = null;
@@ -33,14 +34,15 @@ var calPoints = function (operations) {
         } else {
             // TODO push on stack
             // resultStack.push(Number(operations[x]));
-            resultStack[++top] = Number(operations[x]);
+            resultStack[++top] = Number(op);
         }
     }
 
     let sum = 0;
 
     for (let x = resultStack.length - 1; x >= 0; x--) {
-        if (resultStack[x]) sum += resultStack[x];
+        let ele = resultStack[x];
+        if (ele) sum += ele;
     }
 
     return sum;
