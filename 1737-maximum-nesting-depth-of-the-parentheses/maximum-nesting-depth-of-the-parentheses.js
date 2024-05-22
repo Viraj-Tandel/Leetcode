@@ -6,21 +6,19 @@ var maxDepth = function (s) {
     if (!s.length)
         return 0;
 
-    let resultStack = [];
-    let maxPar = 0;
+    let maxDepth = 0;
     let cnt = 0;
-    let topIndex = -1;
+    let currentDepth = 0;
 
     while (s[cnt]) {
         if (s[cnt] === '(') {
-            resultStack[++topIndex] = '('
+            currentDepth++;
+            maxDepth = Math.max(maxDepth,currentDepth);
         } else if (s[cnt] == ')') {
-            maxPar = Math.max(maxPar, topIndex+1);
-            topIndex--;
+            currentDepth--;
         }
         cnt++;
     }
-    console.log(resultStack);
 
-    return maxPar;
+    return maxDepth;
 };
