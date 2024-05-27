@@ -15,18 +15,17 @@ var mergeNodes = function (head) {
 
     let mergeList = new ListNode(-1);
     let ptr = mergeList;
-    let start = head;
-    let end = head.next;
+    let current = head.next;
     let sum = 0;
-    while (end) {
-        if (end.val !== 0) {
-            sum = sum + end.val;
+    while (current) {
+        if (current.val !== 0) {
+            sum = sum + current.val;
         } else {
             ptr.next = new ListNode(sum);
             ptr = ptr.next;
             sum = 0;
         }
-        end = end.next;
+        current = current.next;
     }
     return mergeList.next;
 };
