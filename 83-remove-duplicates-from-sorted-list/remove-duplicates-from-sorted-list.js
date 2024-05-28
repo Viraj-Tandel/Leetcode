@@ -10,23 +10,15 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function (head) {
-    if (!head || !head.next)
-        return head;
+    if (!head) return head;
 
-    let slow = head;
-    let fast = head.next;
+    let current = head;
 
-    while (fast) {
-        if (slow.val === fast.val) {
-            // TODO DELETE THE NODE BY UPDATING NODE
-            slow.next = fast.next;
-            if (slow)
-                fast = slow.next;
-            else
-                fast = null;
+    while (current && current.next) {
+        if (current.val === current.next.val) {
+            current.next = current.next.next;
         } else {
-            slow = slow.next;
-            fast = fast.next;
+            current = current.next;
         }
     }
 
