@@ -10,33 +10,21 @@
  * @return {ListNode}
  */
 var removeZeroSumSublists = function (head) {
-    if (!head)
-        return head;
-
     let dummy = new ListNode(0, head);
-    let map = new Map();
-    map.set(0, dummy);
+    let prefixSumMap = new Map();
     let sum = 0;
 
-    while (head !== null) {
-        sum += head.val;
-        if (map.has(sum)) {
-            // TODO DELETE LL NODES
-            let start = map.get(sum);
-            let temp = start;
-            let prefixSum = sum;
-            while (temp !== head) {
-                temp = temp.next;
-                prefixSum = prefixSum + temp.val;
-                if (temp !== head)
-                    map.delete(prefixSum);
-            }
-            start.next = head.next;
-        } else {
-            // map[sum] = head;
-            map.set(sum, head);
-        }
-        head = head.next;
+    // First pass to build the prefix sum map
+    for (let node = dummy; node !== null; node = node.next) {
+        sum += node.val;
+        prefixSumMap.set(sum, node);
+    }
+
+    // Second pass to remove zero-sum sublists
+    sum = 0;
+    for (let node = dummy; node !== null; node = node.next) {
+        sum += node.val;
+        node.next = prefixSumMap.get(sum).next;
     }
 
     return dummy.next;
