@@ -20,5 +20,15 @@ var getDecimalValue = function (head) {
         head = head.next;
     }
 
-    return parseInt(binaryString, 2);
+    return binaryStringToInt(binaryString, 2);
 };
+
+function binaryStringToInt(binaryString) {
+    let result = 0;
+
+    for (let i = 0; i < binaryString.length; i++) {
+        result = result * 2 + (binaryString[i] === '1' ? 1 : 0);
+    }
+
+    return result;
+}
