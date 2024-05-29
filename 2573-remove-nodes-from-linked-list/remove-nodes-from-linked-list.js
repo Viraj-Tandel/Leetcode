@@ -14,26 +14,24 @@ var removeNodes = function (head) {
         return head;
 
     let reverse = reverseLL(head);
-    let stack = [];
-    let dummy = new ListNode(-1)
-    let ptr = dummy;
+    let newHead = null;
+    let MAX_VALUE = -Infinity;
+    let prev = null;
 
     while (reverse) {
-        if (stack.length === 0) {
-            stack.push(reverse.val);
-        } else if (stack[stack.length - 1] <= reverse.val) {
-            stack.push(reverse.val);
+        if (reverse.val >= MAX_VALUE) {
+            let newNode = new ListNode(reverse.val);
+            if (prev == null) {
+                newHead = newNode;
+            } else {
+                prev.next = newNode;
+            }
+            prev = newNode;
+            MAX_VALUE = reverse.val;
         }
         reverse = reverse.next;
     }
-
-    while (stack.length) {
-        let newNode = new ListNode(stack.pop());
-        ptr.next = newNode;
-        ptr = ptr.next;
-    }
-
-    return dummy.next;
+    return reverseLL(newHead);
 };
 
 function reverseLL(head) {
