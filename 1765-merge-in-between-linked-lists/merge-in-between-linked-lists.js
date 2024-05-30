@@ -21,15 +21,14 @@ var mergeInBetween = function (list1, a, b, list2) {
     let prev = dummy;
     let cnt = b - a;
 
-    while (a) {
-        prev = ptr;
+    while (a || cnt) {
+        if (a !== 0) {
+            prev = ptr;
+            a--;
+        } else {
+            cnt--;
+        }
         ptr = ptr.next;
-        a--;
-    }
-
-    while (cnt) {
-        ptr = ptr.next;
-        cnt--;
     }
 
     let next = ptr.next;
