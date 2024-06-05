@@ -4,32 +4,41 @@
  * @return {number[]}
  */
 var nextGreaterElement = function (nums1, nums2) {
-    let helperMap = new Map();
+    if (nums1.length === 0 || nums2.length === 0) {
+        return;
+    }
+
+    let stack = [];
     let result = [];
-    for (let x = 0; x < nums2.length; x++) {
-        result.push(findNextGreater(x, nums2));
-    }
+    let size = nums2.length - 1;
+    let top = -1;
+    let map = new Map();
 
-    for (let x = 0; x < nums2.length; x++) {
-        helperMap.set(nums2[x], result[x]);
-    }
-
-    result = [];
-
-    for (let x = 0; x < nums1.length; x++) {
-        result.push(helperMap.get(nums1[x]));
-    }
-
-    return result;
-
-};
-
-function findNextGreater(curIndex, arr) {
-    let targetEle = arr[curIndex];
-    for (let x = curIndex + 1; x < arr.length; x++) {
-        if (arr[x] > targetEle) {
-            return arr[x];
+    for (let x = size; x >= 0; x--) {
+        if (top !== -1) {
+            // CHECK TOP is greater than current element
+            if (stack[top] > nums2[x]) {
+                result[x] = stack[top];
+                stack[++top] = nums2[x];
+            } else {
+                // WE NEED TO POP THE ELEMENTS
+                while (top !== -1 && stack[top] <= nums2[x]) {
+                    top--;
+                }
+                if (top !== -1) {
+                    result[x] = stack[top];
+                    stack[++top] = nums2[x];
+                } else {
+                    result[x] = -1;
+                    stack[++top] = nums2[x];
+                }
+            }
+        } else {
+            // TODO push it on stack
+            stack[++top] = nums2[x];
+            result[x] = -1;
         }
+        map.set(nums2[x], result[x]);
     }
-    return -1;
-}
+    return nums1.map((number) => map.get(number));
+};
