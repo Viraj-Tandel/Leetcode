@@ -40,5 +40,12 @@ var nextGreaterElement = function (nums1, nums2) {
         }
         map.set(nums2[x], result[x]);
     }
-    return nums1.map((number) => map.get(number));
+
+    result = [];
+
+    for (let x = 0; nums1[x] || nums1[x] == 0; x++) {
+        result[x] = map.get(nums1[x]);
+    }
+
+    return result;
 };
