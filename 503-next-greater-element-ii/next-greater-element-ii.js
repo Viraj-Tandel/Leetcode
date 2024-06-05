@@ -9,7 +9,6 @@ var nextGreaterElements = function (nums) {
 
     let stack = [];
     let result = [];
-    let size = (nums.length * 2) - 1;
     let top = -1;
     let map = {};
 
@@ -33,11 +32,5 @@ var nextGreaterElements = function (nums) {
         // Map the current element to its next greater element
         map[nums[x]] = result[x];
     }
-    // result = [];
-
-    // for (let x = 0; nums1[x]; x++) {
-    //     result[x] = map.get(nums1[x]);
-    // }
-
     return result;
 };
