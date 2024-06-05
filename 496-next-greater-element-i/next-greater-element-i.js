@@ -12,39 +12,31 @@ var nextGreaterElement = function (nums1, nums2) {
     let result = [];
     let size = nums2.length - 1;
     let top = -1;
-    let map = new Map();
+    let map = {};
 
     for (let x = size; x >= 0; x--) {
+        // Pop elements from stack that are less than or equal to the current element
+        while (top !== -1 && stack[top] <= nums2[x]) {
+            top--;
+        }
+
+        // If stack is not empty, the top element is the next greater element
         if (top !== -1) {
-            // CHECK TOP is greater than current element
-            if (stack[top] > nums2[x]) {
-                result[x] = stack[top];
-                stack[++top] = nums2[x];
-            } else {
-                // WE NEED TO POP THE ELEMENTS
-                while (top !== -1 && stack[top] <= nums2[x]) {
-                    top--;
-                }
-                if (top !== -1) {
-                    result[x] = stack[top];
-                    stack[++top] = nums2[x];
-                } else {
-                    result[x] = -1;
-                    stack[++top] = nums2[x];
-                }
-            }
+            result[x] = stack[top];
         } else {
-            // TODO push it on stack
-            stack[++top] = nums2[x];
             result[x] = -1;
         }
-        map.set(nums2[x], result[x]);
-    }
 
+        // Push current element to the stack
+        stack[++top] = nums2[x];
+
+        // Map the current element to its next greater element
+        map[nums2[x]] = result[x];
+    }
     result = [];
 
-    for (let x = 0; nums1[x] || nums1[x] == 0; x++) {
-        result[x] = map.get(nums1[x]);
+    for (let x = 0; nums1[x] || nums1[x] === 0; x++) {
+        result[x] = map[nums1[x]];
     }
 
     return result;
