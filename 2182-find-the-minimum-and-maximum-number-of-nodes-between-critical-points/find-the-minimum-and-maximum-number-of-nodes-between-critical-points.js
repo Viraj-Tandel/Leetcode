@@ -10,40 +10,35 @@
  * @return {number[]}
  */
 var nodesBetweenCriticalPoints = function (head) {
-    if (!head || !head.next || !head.next.next)
-        return [-1, -1];
+    if (!head || !head.next || !head.next.next) return [-1, -1];
 
     let prev = head;
-    let ptr = head.next;
-    let min = -1;
-    let max = -1;
-    let criticalCnt = 0;
-    let firstPoint = -1;
-    let prevMaxPoint = -1;
+    let current = head.next;
+    let index = 1;
+    let firstCriticalIndex = -1;
+    let lastCriticalIndex = -1;
     let minDistance = Infinity;
 
-    while (ptr.next) {
-        if ((ptr.val > prev.val && ptr.val > ptr.next.val) || (ptr.val < prev.val && ptr.val < ptr.next.val)) {
-            if (firstPoint === -1) {
-                firstPoint = criticalCnt;
+    while (current.next) {
+        if ((current.val > prev.val && current.val > current.next.val) ||
+            (current.val < prev.val && current.val < current.next.val)) {
+
+            if (firstCriticalIndex === -1) {
+                firstCriticalIndex = index;
+            } else {
+                minDistance = Math.min(minDistance, index - lastCriticalIndex);
             }
 
-            if (prevMaxPoint !== -1) {
-                minDistance = Math.min(minDistance, criticalCnt - prevMaxPoint)
-            }
-
-            prevMaxPoint = criticalCnt;
-
+            lastCriticalIndex = index;
         }
-        prev = ptr;
-        ptr = ptr.next;
-        criticalCnt++;
+        prev = current;
+        current = current.next;
+        index++;
     }
 
     if (minDistance === Infinity) {
         return [-1, -1];
     }
 
-    return [minDistance, prevMaxPoint - firstPoint];
-
+    return [minDistance, lastCriticalIndex - firstCriticalIndex];
 }
