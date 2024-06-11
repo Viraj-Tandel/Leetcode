@@ -1,40 +1,33 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
+ * Double the values of the linked list nodes
+ * @param {ListNode} head - Head of the linked list
+ * @return {ListNode} - Head of the modified linked list
  */
 var doubleIt = function (head) {
-    if (!head)
-        return head;
+    if (!head) return head;
 
-    let reverseList = reverseLL(head);
-    let ptr = reverseList;
+    // Reverse the linked list to handle carry easily
+    let reversedHead = reverseLL(head);
+    let current = reversedHead;
     let carry = 0;
     let prev = null;
 
-    while (ptr) {
-        let doubleValue = ptr.val * 2 + carry;
-        ptr.val = doubleValue % 10;
-
-        if (doubleValue > 9) {
-            carry = 1;
-        } else {
-            carry = 0;
-        }
-        prev = ptr;
-        ptr = ptr.next;
+    // Traverse the reversed list and double the values
+    while (current) {
+        let doubleValue = current.val * 2 + carry;
+        current.val = doubleValue % 10;
+        carry = Math.floor(doubleValue / 10);
+        prev = current;
+        current = current.next;
     }
 
-    if (carry)
-        prev.next = new ListNode(1);
+    // If there is a carry left, add a new node
+    if (carry > 0) {
+        prev.next = new ListNode(carry);
+    }
 
-    return reverseLL(reverseList);
+    // Reverse the list back to original order
+    return reverseLL(reversedHead);
 };
 
 // function reverse linked list
