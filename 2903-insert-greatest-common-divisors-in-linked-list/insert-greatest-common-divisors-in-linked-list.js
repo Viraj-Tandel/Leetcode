@@ -1,27 +1,25 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
 var insertGreatestCommonDivisors = function (head) {
-    if (!head || !head.next)
-        return head;
+    if (!head || !head.next) {
+        return head; // Return if the list is empty or has only one node.
+    }
 
-    let prev = head;
-    let cur = head.next;
+    let previousNode = head;
+    let currentNode = head.next;
 
-    while (cur) {
-        let newNode = new ListNode(gcd(prev.val, cur.val));
-        prev.next = newNode;
-        newNode.next = cur;
-        prev = cur;
-        cur = cur.next;
+    while (currentNode) {
+        // Calculate GCD of the values of the current pair of nodes
+        let gcdValue = gcd(previousNode.val, currentNode.val);
+
+        // Create a new node with the GCD value
+        let newNode = new ListNode(gcdValue);
+
+        // Insert the new node between previousNode and currentNode
+        previousNode.next = newNode;
+        newNode.next = currentNode;
+
+        // Move to the next pair of nodes
+        previousNode = currentNode;
+        currentNode = currentNode.next;
     }
     return head;
 };
