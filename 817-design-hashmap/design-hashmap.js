@@ -1,4 +1,3 @@
-
 var MyHashMap = function () {
     this.result = [];
 };
@@ -9,16 +8,13 @@ var MyHashMap = function () {
  * @return {void}
  */
 MyHashMap.prototype.put = function (key, value) {
-    if (this.get(key) !== -1) {
-        for (let x = 0; this.result[x] !== undefined; x++) {
-            if (this.result[x][0] === key) {
-                this.result[x] = [key, value];
-                break;
-            }
+    for (let x = 0; x < this.result.length; x++) {
+        if (this.result[x][0] === key) {
+            this.result[x][1] = value;  // Update the existing key's value
+            return;
         }
-    } else {
-        this.result.push([key, value]);
     }
+    this.result.push([key, value]);  // Insert the new key-value pair
 };
 
 /** 
@@ -26,12 +22,12 @@ MyHashMap.prototype.put = function (key, value) {
  * @return {number}
  */
 MyHashMap.prototype.get = function (key) {
-    for (let x = 0; this.result[x] !== undefined; x++) {
+    for (let x = 0; x < this.result.length; x++) {
         if (this.result[x][0] === key) {
             return this.result[x][1];
         }
     }
-    return -1;
+    return -1;  // Key not found
 };
 
 /** 
@@ -39,10 +35,10 @@ MyHashMap.prototype.get = function (key) {
  * @return {void}
  */
 MyHashMap.prototype.remove = function (key) {
-    console.log("result before reove------>", this.result);
-    for (let x = 0; this.result[x] !== undefined; x++) {
+    for (let x = 0; x < this.result.length; x++) {
         if (this.result[x][0] === key) {
-            this.result.splice(x, 1);
+            this.result.splice(x, 1);  // Remove the key-value pair
+            return;
         }
     }
 };
