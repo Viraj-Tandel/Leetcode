@@ -15,6 +15,5 @@ var removeDuplicates = function (nums) {
             uniqueIndex++;
         }
     }
-    console.log(uniqueIndex)
     return uniqueIndex + 1;
 };
