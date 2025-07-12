@@ -30,7 +30,6 @@ var merge = function (nums1, m, nums2, n) {
             p2--;
         } else {
             nums1[x] = nums1[p1];
-            nums1[p1] = nums2[p2];
             p1--;
         }
     }
