@@ -21,8 +21,20 @@ var replaceElements = function (arr) {
 
     // return result;
 
-    if (arr.length <= 1) return [-1];
+    // if (arr.length <= 1) return [-1];
 
+    // let max = -1;
+    // for (let x = arr.length - 1; x >= 0; x--) {
+    //     let current = arr[x];
+    //     arr[x] = max;
+    //     if (max < current) {
+    //         max = current;
+    //     }
+    // }
+
+    // return arr;
+
+    // SOLVED AGAIN -- 26/7
     let max = -1;
     for (let x = arr.length - 1; x >= 0; x--) {
         let current = arr[x];
@@ -31,6 +43,5 @@ var replaceElements = function (arr) {
             max = current;
         }
     }
-
     return arr;
 };
