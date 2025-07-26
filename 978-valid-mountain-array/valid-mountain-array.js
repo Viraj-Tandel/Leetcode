@@ -7,21 +7,26 @@ var validMountainArray = function (arr) {
         return false;
     }
 
-    let n = arr.length;
     let cnt = 0;
-
-    // climb up
-    while (arr[cnt] < arr[cnt + 1] && cnt + 1 < n) {
-        cnt++;
+    let n = arr.length;
+    for (let x = 0; x < n - 1; x++) {
+        if (x < n - 1 && arr[x] < arr[x + 1]) {
+            cnt++;
+        }
+        else {
+            break;
+        }
     }
 
-    // first or last can't be peak
-    if (cnt == 0 || cnt == n - 1) return false;
+    if (cnt == 0 || cnt == n - 1)
+        return false;
 
-    // climb down
-    while (arr[cnt] > arr[cnt + 1] && cnt + 1 < n) {
-        cnt++;
+    for (let x = cnt; x < n - 1; x++) {
+        if (x < n - 1 && arr[x] > arr[x + 1]) {
+            cnt++;
+        } else {
+            return false;
+        }
     }
-
     return cnt == n - 1;
 };
