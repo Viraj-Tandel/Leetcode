@@ -15,6 +15,17 @@ var checkIfExist = function (arr) {
     // }
     // return false;
 
+    // let resultMap = new Set();
+    // for (let x = 0; x < arr.length; x++) {
+    //     if (resultMap.has(arr[x] * 2) || (arr[x] % 2 == 0 && resultMap.has(arr[x] / 2))) {
+    //         return true;
+    //     }
+    //     resultMap.add(arr[x]);
+    // }
+    // return false;
+
+
+    // Practice Solve ---> 27/7/25
     let resultMap = new Set();
     for (let x = 0; x < arr.length; x++) {
         if (resultMap.has(arr[x] * 2) || (arr[x] % 2 == 0 && resultMap.has(arr[x] / 2))) {
