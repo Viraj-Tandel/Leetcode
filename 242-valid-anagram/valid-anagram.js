@@ -36,6 +36,24 @@ var isAnagram = function (s, t) {
 
     // return true;
 
+    // if (s.length !== t.length) {
+    //     return false;
+    // }
+
+    // let freqMap = {};
+
+    // for (let x = 0; x < s.length; x++) {
+    //     freqMap[s[x]] = (freqMap[s[x]] || 0) + 1;
+    // }
+
+    // for (let x = 0; x < t.length; x++) {
+    //     if (!freqMap[t[x]]) return false;
+    //     freqMap[t[x]]--;
+    // }
+
+    // return true;
+
+    // Revision ---> 8/2/25
     if (s.length !== t.length) {
         return false;
     }
@@ -45,10 +63,13 @@ var isAnagram = function (s, t) {
     for (let x = 0; x < s.length; x++) {
         freqMap[s[x]] = (freqMap[s[x]] || 0) + 1;
     }
-
+    console.log(freqMap)
     for (let x = 0; x < t.length; x++) {
-        if (!freqMap[t[x]]) return false;
-        freqMap[t[x]]--;
+        if (freqMap[t[x]]) {
+            freqMap[t[x]]--;
+        } else {
+            return false;
+        }
     }
 
     return true;
