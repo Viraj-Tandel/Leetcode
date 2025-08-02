@@ -50,7 +50,7 @@ var findDisappearedNumbers = function (nums) {
     // REVISED ---> 8/2/2025
     for (let x = 0; x < nums.length; x++) {
         let index = Math.abs(nums[x]) - 1;
-        nums[index] = -Math.abs([nums[index]]);
+        nums[index] = -Math.abs(nums[index]);
     }
     let result = [];
     for (let x = 0; x < nums.length; x++) {
