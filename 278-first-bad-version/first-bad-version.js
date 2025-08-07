@@ -19,21 +19,37 @@ var solution = function (isBadVersion) {
      */
     return function (n) {
 
+        // let left = 1;
+        // let right = n;
+        // let mid;
+
+        // while (left < right) {
+        //     mid = Math.floor((left + right) / 2);
+        //     let result = isBadVersion(mid);
+
+        //     if (!result) {
+        //         left = mid + 1;
+        //     } else {
+        //         right = mid;
+        //     }
+        // }
+
+        // return left;
+
+        // * Practice solve 7/8/2025
+
         let left = 1;
         let right = n;
-        let mid;
 
         while (left < right) {
-            mid = Math.floor((left + right) / 2);
-            let result = isBadVersion(mid);
+            let mid = Math.floor((left + right) / 2);
 
-            if (!result) {
-                left = mid + 1;
-            } else {
+            if (isBadVersion(mid)) {
                 right = mid;
+            } else {
+                left = mid + 1
             }
         }
-
         return left;
     };
 };
