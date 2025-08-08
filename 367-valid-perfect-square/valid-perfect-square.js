@@ -14,7 +14,7 @@ var isPerfectSquare = function (num) {
         } else if (mid * mid > num) {
             right = mid - 1;
         } else {
-            left = left + 1;
+            left = mid + 1;
         }
     }
 
