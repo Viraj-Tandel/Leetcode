@@ -24,6 +24,9 @@ var mySqrt = function (x) {
     // return right;
 
     // * Practice solve 25/8/2025
+    if (x < 2) {
+        return x;
+    }
     let left = 1;
     let right = x;
 
