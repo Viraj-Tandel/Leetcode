@@ -20,14 +20,14 @@ var search = function (nums, target) {
 
         // \U0001f539 Left half is sorted
         if (nums[left] <= nums[mid]) {
-            if (nums[left] <= target && target < nums[mid]) {
+            if (nums[left] <= target && target <= nums[mid]) {
                 right = mid - 1;    // target in left
             } else {
                 left = mid + 1;     // target in right
             }
         } else {
             // \U0001f539 Right half is sorted
-            if (nums[mid] < target && target <= nums[right]) {
+            if (nums[mid] <= target && target <= nums[right]) {
                 left = mid + 1;     // target in right
             } else {
                 right = mid - 1;    // target in left
