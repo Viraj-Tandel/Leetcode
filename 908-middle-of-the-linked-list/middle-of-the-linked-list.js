@@ -10,6 +10,7 @@
  * @return {ListNode}
  */
 var middleNode = function (head) {
+    // Practice solve 24/10/25
     let slow = head;
     let fast = head;
 
