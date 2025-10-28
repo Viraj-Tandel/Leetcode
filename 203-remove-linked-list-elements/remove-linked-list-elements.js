@@ -15,7 +15,7 @@ var removeElements = function (head, val) {
     sentinel.next = head;
     let prev = sentinel;
 
-    while (prev && prev.next) {
+    while (prev.next) {
         if (prev.next.val === val) {
             prev.next = prev.next.next;
         } else {
