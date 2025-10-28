@@ -5,16 +5,31 @@
  *     this.next = null;
  * }
  */
+
 /**
  * @param {ListNode} headA
  * @param {ListNode} headB
  * @return {ListNode}
  */
 var getIntersectionNode = function (headA, headB) {
-    let a = headA, b = headB
-    while (a !== b) {
-        a = !a ? headB : a.next
-        b = !b ? headA : b.next
+    let seenNodes = new Set();
+
+    let current = headA;
+    while (current) {
+        if (!seenNodes.has(current)) {
+            seenNodes.add(current);
+        }
+        current = current.next;
     }
-    return a
+
+    current = headB;
+    while (current) {
+        if (seenNodes.has(current)) {
+            return current;
+        }
+        current = current.next;
+    }
+
+    return null;
+
 };
