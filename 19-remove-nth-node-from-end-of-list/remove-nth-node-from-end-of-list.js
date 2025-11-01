@@ -10,32 +10,22 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function (head, n) {
-    let reverseList = reverseLinkedList(head);
-    let sentinel = new ListNode();
-    sentinel.next = reverseList;
+var removeNthFromEnd = function(head, n) {
+    let fakeNode = new ListNode(0,head);
+    let current = fakeNode;
 
-    let current = sentinel;
-    for (let x = 1; x < n; x++) {
+    for(let x = 0; x < n + 1; x++){
         current = current.next;
     }
-    current.next = current.next.next;
 
-    sentinel = reverseLinkedList(sentinel.next);
+    let slow = fakeNode;
 
-    return sentinel;
-};
-
-var reverseLinkedList = function (head) {
-    let prev = null;
-    let current = head;
-
-    while (current) {
-        let temp = current.next;
-        current.next = prev;
-        prev = current;
-        current = temp;
+    while(current){
+        current = current.next;
+        slow = slow.next;
     }
 
-    return prev;
-}
+    slow.next = slow.next.next;
+
+    return fakeNode.next;
+};
