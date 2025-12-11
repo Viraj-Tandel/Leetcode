@@ -24,11 +24,13 @@ var mergeTwoLists = function (list1, list2) {
         }
         dummy = dummy.next;
     }
-    if (list1) {
-        dummy.next = list1;
-    }
-    if (list2) {
-        dummy.next = list2;
-    }
+    // if (list1) {
+    //     dummy.next = list1;
+    // }
+    // if (list2) {
+    //     dummy.next = list2;
+    // }
+    dummy.next = list1 || list2;
+
     return dummyHead.next;
 };
