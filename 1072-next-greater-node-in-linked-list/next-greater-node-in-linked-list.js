@@ -21,8 +21,9 @@ var nextLargerNodes = function (head) {
 
     let ans = new Array(nums.length - 1).fill(0);
     let stack = [];
+    let length = nums.length;
 
-    for (let x = nums.length - 1; x >= 0; x--) {
+    for (let x = length - 1; x >= 0; x--) {
         while (stack.length && stack[stack.length - 1] <= nums[x]) {
             stack.pop();
         }
