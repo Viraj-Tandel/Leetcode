@@ -3,18 +3,17 @@
  * @return {number}
  */
 var lengthOfLastWord = function (s) {
-    // if (s.length === 1) {
-    //     return 1;
-    // }
+    let length = 0;
+    let isWordFound = false;
 
-    let words = s.split(" ");
-    let result = [];
-
-    for (let x = 0; x < words.length; x++) {
-        if (words[x] !== "") {
-            result.push(words[x]);
+    for (let x = s.length - 1; x >= 0; x--) {
+        if (s[x] !== " ") {
+            length++;
+            isWordFound = true;
+        } else if (s[x] == " " && isWordFound) {
+            break;
         }
     }
 
-    return result[result.length - 1].length;
+    return length;
 };
