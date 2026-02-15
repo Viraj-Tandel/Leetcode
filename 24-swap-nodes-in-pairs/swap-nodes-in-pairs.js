@@ -9,26 +9,26 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var swapPairs = function (head) {
-
-    if (!head || !head.next) {
-        return head;
+var swapPairs = function(head) {
+    if(!head || !head.next){
+        return  head;
     }
 
     let dummy = new ListNode();
     dummy.next = head;
-    let newHead = dummy;
     let prev = dummy;
-    let current = head;
+    let cur = head;
 
-    while (current && current.next) {
-        prev.next = current.next;
-        current.next = prev.next.next;
-        prev.next.next = current;
-
-        prev = current;
-        current = current.next;
+    while(cur && cur.next){
+        prev.next = cur.next;
+        let temp = cur.next.next;
+        cur.next.next = cur;
+        cur.next = temp;
+        prev = cur;
+        cur = temp;
     }
 
-    return newHead.next;
+    console.log("ANSWER---->", dummy.next);
+
+    return dummy.next;
 };
