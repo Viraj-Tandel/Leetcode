@@ -28,7 +28,5 @@ var swapPairs = function(head) {
         cur = temp;
     }
 
-    console.log("ANSWER---->", dummy.next);
-
     return dummy.next;
 };
