@@ -6,13 +6,10 @@
 var findWordsContaining = function (words, x) {
     let result = [];
 
-    for (let z = 0; z < words.length; z++) {
-        let temp = words[z];
-        for (let y = 0; y < temp.length; y++) {
-            if (temp[y] == x) {
-                result.push(z);
-                break;
-            }
+    for (let y = 0; y < words.length; y++) {
+        let tempSet = new Set(words[y]);
+        if (tempSet.has(x)) {
+            result.push(y);
         }
     }
 
