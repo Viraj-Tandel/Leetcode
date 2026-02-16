@@ -3,23 +3,27 @@
  * @return {number}
  */
 var maxFreqSum = function (s) {
-    let freqMap = {};
-    let charFreq = 0;
     let vowelFreq = 0;
+    let constantFreq = 0;
+    let freqMap = {};
 
+    // calculate frequancy
     for (let x = 0; x < s.length; x++) {
-
         if (freqMap[s[x]]) {
             freqMap[s[x]]++;
         } else {
             freqMap[s[x]] = 1;
         }
+    }
 
-        if (s[x] == 'a' || s[x] == 'e' || s[x] == 'i' || s[x] == 'o' || s[x] == 'u') {
-            vowelFreq = (freqMap[s[x]] > vowelFreq) ? freqMap[s[x]] : vowelFreq;
+    // figure out max count
+    for (let x in freqMap) {
+        if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u') {
+            vowelFreq = Math.max(vowelFreq, freqMap[x]);
         } else {
-            charFreq = (freqMap[s[x]] > charFreq) ? freqMap[s[x]] : charFreq;
+            constantFreq = Math.max(constantFreq, freqMap[x]);
         }
     }
-    return charFreq + vowelFreq;
+
+    return (vowelFreq + constantFreq);
 };
