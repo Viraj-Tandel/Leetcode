@@ -4,14 +4,17 @@
  */
 var lengthOfLastWord = function (s) {
     let cnt = 0;
-    let isCharFound = false;
-    for (let x = s.length - 1; x >= 0; x--) {
-        if (s[x] !== " ") {
-            cnt++;
-            isCharFound = true;
-        } else if (s[x] == " " && isCharFound) {
-            break;
-        }
+    let i = s.length - 1;
+
+    // skipping trailing space
+    while (s[i] == " " && i >= 0) {
+        i--;
+    }
+
+    // counting last word length after skipping the empty space
+    while (s[i] !== " " && i >= 0) {
+        cnt++;
+        i--;
     }
 
     return cnt;
