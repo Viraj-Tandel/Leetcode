@@ -10,24 +10,22 @@
  * @return {number[]}
  */
 var nextLargerNodes = function (head) {
-    let nums = [];
-    let cur = head;
-    let result = [];
-    let stack = [];
+    let list = [];
+    let current = head;
 
-    while (cur) {
-        nums.push(cur.val);
-        cur = cur.next;
+    while (current) {
+        list.push(current.val);
+        current = current.next;
     }
 
-    for (let x = nums.length - 1; x >= 0; x--) {
-        let temp = nums[x];
-
-        while (stack.length && stack[stack.length - 1] <= temp) {
-            stack.pop();
+    let result = new Array(list.length).fill(0);
+    let stack = [];
+    for (let x = 0; x < list.length; x++) {
+        while (stack.length && list[x] > list[stack[stack.length - 1]]) {
+            let index = stack.pop();
+            result[index] = list[x];
         }
-        result[x] =(stack.length) ? stack[stack.length - 1] : 0;                                   
-        stack.push(temp);
+        stack.push(x);
     }
 
     return result;
