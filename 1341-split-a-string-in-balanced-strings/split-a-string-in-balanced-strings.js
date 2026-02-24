@@ -4,19 +4,17 @@
  */
 var balancedStringSplit = function (s) {
     let cnt = 0;
-    let rCnt = 0;
-    let lCnt = 0;
+    let balance = 0;
+
     for (let x = 0; x < s.length; x++) {
         if (s[x] == 'R') {
-            rCnt++;
+            balance++;
         } else if (s[x] == 'L') {
-            lCnt++;
+            balance--;
         }
 
-        if (rCnt == lCnt) {
+        if (balance == 0) {
             cnt++;
-            rCnt = 0;
-            lCnt = 0;
         }
     }
 
