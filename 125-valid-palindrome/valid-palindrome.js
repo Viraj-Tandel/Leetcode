@@ -25,10 +25,5 @@ var isPalindrome = function (s) {
         rArr[rArr.length - y - 1] = temp;
     }
 
-    console.log("sArr----->", sArr.join(""))
-    console.log("rArr----->", rArr.join(""))
-
-
-
     return sArr.join("") == rArr.join("");
 };
