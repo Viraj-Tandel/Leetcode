@@ -3,27 +3,27 @@
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-    let sArr = [];
-    let rArr = [];
+    s = s.toLowerCase();
 
-    // Separating chars from string and eleminating the special char and spaces
-    for (let x = 0; x < s.length; x++) {
-        if (s[x] !== " ") {
-            let asciieVal = s[x].charCodeAt(0);
-            if ((asciieVal >= 65 && asciieVal <= 90) || (asciieVal >= 97 && asciieVal <= 122) || (asciieVal >= 48 && asciieVal <= 57)) {
-                sArr.push(s[x].toLowerCase());
+    let left = 0;
+    let right = s.length - 1;
+
+    while (left <= right) {
+        let regex = /^[a-zA-Z0-9]$/;
+
+        if (regex.test(s[left]) && regex.test(s[right])) {
+            if (s[left] == s[right]) {
+                left++;
+                right--;
+            } else {
+                return false;
             }
+        } else if (!regex.test(s[left])) {
+            left++;
+        } else if (!regex.test(s[right])) {
+            right--;
         }
     }
 
-    rArr = JSON.parse(JSON.stringify(sArr));
-    // reversing a string
-    let n = Math.floor(rArr.length / 2);
-    for (let y = 0; y < n; y++) {
-        let temp = rArr[y];
-        rArr[y] = rArr[rArr.length - y - 1];
-        rArr[rArr.length - y - 1] = temp;
-    }
-
-    return sArr.join("") == rArr.join("");
+    return true;
 };
