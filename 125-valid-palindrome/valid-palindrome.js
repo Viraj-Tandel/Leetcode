@@ -7,9 +7,9 @@ var isPalindrome = function (s) {
 
     let left = 0;
     let right = s.length - 1;
+    let regex = /^[a-zA-Z0-9]$/;
 
     while (left <= right) {
-        let regex = /^[a-zA-Z0-9]$/;
         let regexLeft = regex.test(s[left]);
         let regexRight = regex.test(s[right]);
 
