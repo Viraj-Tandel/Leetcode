@@ -4,27 +4,18 @@
  * @return {string}
  */
 var reverseStr = function (s, k) {
-    const list = [];
 
-    for (let x = 0; x < s.length; x++) {
-        list.push(s[x]);
-    }
+    let charArr = s.split("");
 
-    for (let x = 0; x < s.length; x = x + (2 * k)) {
-        let len = Math.min(k, s.length - x);
-        let mid = Math.floor(len / 2);
-
+    for (let x = 0; x < charArr.length; x = x + (2 * k)) {
+        let n = k;
+        let mid = Math.floor(n / 2);
         for (let y = 0; y < mid; y++) {
-            let temp = list[y + x];
-            list[y + x] = list[len - y - 1 + x];
-            list[len - y - 1 + x] = temp;
+            let temp = charArr[x + y];
+            charArr[x + y] = charArr[x + n - y - 1];
+            charArr[x + n - y - 1] = temp;
         }
     }
 
-    let result = "";
-    for (let x = 0; x < list.length; x++) {
-        result += list[x];
-    }
-
-    return result;
+    return charArr.join("");
 };
