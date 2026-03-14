@@ -11,15 +11,15 @@ var largestOddNumber = function (num) {
         if (digit % 2 == 0) {
             right--;
         } else {
-            break;
+            return num.slice(0,right + 1);
         }
     }
 
-    let r = "";
+    // let r = "";
 
-    for (let x = 0; x <= right; x++) {
-        r = r + num[x];
-    }
+    // for (let x = 0; x <= right; x++) {
+    //     r = r + num[x];
+    // }
 
-    return r;
+    return "";
 }
