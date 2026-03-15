@@ -4,6 +4,11 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
+
+    if (s.length !== t.length) {
+        return false;
+    }
+
     let freqMap = {};
 
     // Counting frequancy
@@ -17,15 +22,9 @@ var isAnagram = function (s, t) {
 
     // checking frequancy for other string
     for (let x = 0; x < t.length; x++) {
-        if (freqMap[t[x]]) {
+        if (freqMap[t[x]] > 0) {
             freqMap[t[x]]--;
         } else {
-            return false;
-        }
-    }
-
-    for (let x in freqMap) {
-        if (freqMap[x] != 0) {
             return false;
         }
     }
