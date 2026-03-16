@@ -4,64 +4,20 @@
  * @return {boolean}
  */
 var isIsomorphic = function (s, t) {
-    // let sFreqMap = {};
-    // let tFreqMap = {};
-
-    // for (let x = 0; x < s.length; x++) {
-    //     if (sFreqMap[s[x]]) {
-    //         sFreqMap[s[x]]++;
-    //     } else {
-    //         sFreqMap[s[x]] = 1;
-    //     }
-    // }
-
-    // for (let x = 0; x < t.length; x++) {
-    //     if (tFreqMap[t[x]]) {
-    //         tFreqMap[t[x]]++;
-    //     } else {
-    //         tFreqMap[t[x]] = 1;
-    //     }
-    // }
-
-    // return Object.keys(sFreqMap).length === Object.keys(tFreqMap).length;
-
-
-    // if (s.length !== t.length) {
-    //     return false;
-    // }
-
-    // let freqMap = {};
-
-    // for (let x = 0; x < s.length; x++) {
-    //     if (!freqMap[s[x]]) {
-    //         if (Object.values(freqMap).indexOf(t[x]) == -1) {
-    //             freqMap[s[x]] = t[x];
-    //         } else {
-    //             return false;
-    //         }
-    //     } else if (freqMap[s[x]]) {
-    //         if (freqMap[s[x]] !== t[x]) {
-    //             return false;
-    //         }
-    //     }
-    // }
-
-    // return true;
-
-    if (s.length !== t.length) {
+    // PRACTISE SOLVED 16/3/2026
+    if (s.length !== t.length)
         return false;
-    }
 
-    let sToTmap = {};
-    let tToSmap = {};
+    let sToT = {};
+    let tToS = {};
 
     for (let x = 0; x < s.length; x++) {
-        if (!sToTmap[s[x]] && !tToSmap[t[x]]) {
-            sToTmap[s[x]] = t[x];
-            tToSmap[t[x]] = s[x];
-        } else if (sToTmap[s[x]] !== t[x]) { // if already exist inside S to T map (foo --> bar)
+        if (!sToT[s[x]] && !tToS[t[x]]) {
+            sToT[s[x]] = t[x];
+            tToS[t[x]] = s[x];
+        } else if (sToT[s[x]] !== t[x]) {
             return false;
-        } else if (tToSmap[t[x]] !== s[x]) { // if already exist inside T to S map (bar --> foo)
+        } else if (tToS[t[x]] !== s[x]) {
             return false;
         }
     }
