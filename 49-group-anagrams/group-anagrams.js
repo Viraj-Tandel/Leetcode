@@ -28,15 +28,40 @@ var groupAnagrams = function (strs) {
 
     // return result;
 
+    // let map = {};
+
+    // for (let x = 0; x < strs.length; x++) {
+    //     let temp = [...strs[x]].sort().join("");
+
+    //     if (!map[temp]) {
+    //         map[temp] = [strs[x]];
+    //     } else {
+    //         map[temp].push(strs[x]);
+    //     }
+    // }
+
+    // return Object.values(map);
+
     let map = {};
 
     for (let x = 0; x < strs.length; x++) {
-        let temp = [...strs[x]].sort().join("");
+        // create key
+        let freqMap = Array(26).fill(0);
 
-        if (!map[temp]) {
-            map[temp] = [strs[x]];
+        for (let y = 0; y < strs[x].length; y++) {
+            let charIndex = strs[x][y].charCodeAt() - 'a'.charCodeAt();
+            ++freqMap[charIndex];
+        }
+
+        let key = "";
+        for (let z = 0; z < freqMap.length; z++) {
+            key = key + String.fromCharCode((97 + z)) + freqMap[z];
+        }
+
+        if (map[key] == undefined) {
+            map[key] = [strs[x]];
         } else {
-            map[temp].push(strs[x]);
+            map[key].push(strs[x]);
         }
     }
 
