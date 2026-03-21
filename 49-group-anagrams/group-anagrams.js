@@ -53,10 +53,10 @@ var groupAnagrams = function (strs) {
             ++freqMap[charIndex];
         }
 
-        let key = "";
-        for (let z = 0; z < freqMap.length; z++) {
-            key = key + String.fromCharCode((97 + z)) + freqMap[z];
-        }
+        let key = freqMap.join("#");
+        // for (let z = 0; z < freqMap.length; z++) {
+        //     key = key + String.fromCharCode((97 + z)) + freqMap[z];
+        // }
 
         if (map[key] == undefined) {
             map[key] = [strs[x]];
