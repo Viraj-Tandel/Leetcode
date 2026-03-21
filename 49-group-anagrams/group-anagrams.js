@@ -46,7 +46,7 @@ var groupAnagrams = function (strs) {
 
     for (let x = 0; x < strs.length; x++) {
         // create key
-        let freqMap = Array(26).fill(0);
+        let freqMap = new Array(26).fill(0);
 
         for (let y = 0; y < strs[x].length; y++) {
             let charIndex = strs[x][y].charCodeAt() - 'a'.charCodeAt();
