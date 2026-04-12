@@ -7,6 +7,7 @@ var evalRPN = function (tokens) {
 
     for (let x = 0; x < tokens.length; x++) {
         if (tokens[x] == '+' || tokens[x] == '-' || tokens[x] == '/' || tokens[x] == '*') {
+            // when operator comes
             let op2 = stack.pop();
             let op1 = stack.pop();
             let result;
