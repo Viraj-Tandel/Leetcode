@@ -37,7 +37,5 @@ var evalRPN = function (tokens) {
         }
     }
 
-    console.log(stack)
-
-    return stack.pop();
+    return Number(stack.pop());
 };
