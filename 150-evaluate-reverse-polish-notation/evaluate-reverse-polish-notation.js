@@ -3,41 +3,40 @@
  * @return {number}
  */
 var evalRPN = function (tokens) {
-    if (!tokens.length)
-        return tokens;
-
-    let stackTop = -1;
     let stack = [];
 
-    for (let x = 0; tokens[x]; x++) {
-        if ((tokens[x] === '+' || tokens[x] === '*' || tokens[x] === '-' || tokens[x] === '/')) {
-            // TODO perform operation on first two elements of stack
-            let second = stack[stackTop--];
-            let first = stack[stackTop--];
+    for (let x = 0; x < tokens.length; x++) {
+        if (tokens[x] == '+' || tokens[x] == '-' || tokens[x] == '/' || tokens[x] == '*') {
+            let op2 = stack.pop();
+            let op1 = stack.pop();
             let result;
+
             switch (tokens[x]) {
                 case '+':
-                    result = first + second;
+                    result = op1 + op2;
                     break;
+
                 case '-':
-                    result = first - second;
+                    result = op1 - op2;
                     break;
-                case '*':
-                    result = first * second;
-                    break;
+
                 case '/':
-                    if (first / second > 0)
-                        result = Math.floor(first / second);
-                    else
-                        result = Math.ceil(first / second);
+                    result = op1 / op2;
+                    break;
+
+                case '*':
+                    result = op1 * op2;
                     break;
             }
-            stack[++stackTop] = result;
 
+            stack.push(Math.trunc(result));
         } else {
-            // TODO push into stack
-            stack[++stackTop] = parseInt(tokens[x]);
+            // This any number
+            stack.push(Number(tokens[x]));
         }
     }
-    return stack[stackTop];
+
+    console.log(stack)
+
+    return stack.pop();
 };
