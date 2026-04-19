@@ -12,38 +12,6 @@ var evalRPN = function (tokens) {
         "*": (a, b) => (b * a),
     }
 
-    // for (let x = 0; x < tokens.length; x++) {
-    //     if (tokens[x] == '+' || tokens[x] == '-' || tokens[x] == '/' || tokens[x] == '*') {
-    //         // when operator comes
-    //         let op2 = stack.pop();
-    //         let op1 = stack.pop();
-    //         let result;
-
-    //         switch (tokens[x]) {
-    //             case '+':
-    //                 result = op1 + op2;
-    //                 break;
-
-    //             case '-':
-    //                 result = op1 - op2;
-    //                 break;
-
-    //             case '/':
-    //                 result = op1 / op2;
-    //                 break;
-
-    //             case '*':
-    //                 result = op1 * op2;
-    //                 break;
-    //         }
-
-    //         stack.push(Math.trunc(result));
-    //     } else {
-    //         // This any number
-    //         stack.push(Number(tokens[x]));
-    //     }
-    // }
-
     for (let x = 0; x < tokens.length; x++) {
 
         if (map[tokens[x]]) {
@@ -53,7 +21,6 @@ var evalRPN = function (tokens) {
             console.log(result);
             stack.push(Math.trunc(result));
         } else {
-            // This any number
             stack.push(Number(tokens[x]));
         }
     }
