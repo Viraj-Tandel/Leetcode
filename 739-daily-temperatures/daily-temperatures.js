@@ -3,25 +3,19 @@
  * @return {number[]}
  */
 var dailyTemperatures = function (temperatures) {
-    let result = [];
+    let result = new Array(temperatures.length).fill(0);
     let stack = [];
     let n = temperatures.length - 1;
 
     for (let x = n; x >= 0; x--) {
         let currentTemp = temperatures[x];
-
-        // <= used in condition becuase same temperature possible like [20,30,30,50]
-        while (stack.length > 0 && stack[stack.length - 1][0] <= currentTemp) {
+        while (stack.length > 0 && temperatures[x] >= temperatures[stack[stack.length - 1]]) {
             stack.pop();
         }
-
-        if (stack.length == 0) {
-            result[x] = 0;
-        } else {
-            result[x] = Math.abs(stack[stack.length - 1][1] - x);
+        if (stack.length > 0) {
+            result[x] = Math.abs(stack[stack.length - 1] - x);
         }
-
-        stack.push([currentTemp, x]);
+        stack.push(x);
     }
 
     return result;
