@@ -10,6 +10,7 @@ var dailyTemperatures = function (temperatures) {
     for (let x = n; x >= 0; x--) {
         let currentTemp = temperatures[x];
 
+        // <= used in condition becuase same temperature possible like [20,30,30,50]
         while (stack.length > 0 && stack[stack.length - 1][0] <= currentTemp) {
             stack.pop();
         }
