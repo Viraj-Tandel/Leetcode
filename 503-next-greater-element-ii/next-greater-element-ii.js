@@ -3,34 +3,21 @@
  * @return {number[]}
  */
 var nextGreaterElements = function (nums) {
-    if (nums.length === 0) {
-        return;
-    }
-
+    const arr = [...nums, ...nums];
+    let result = new Array(arr.length).fill(-1);
+    let n = arr.length;
     let stack = [];
-    let result = [];
-    let top = -1;
-    let map = {};
 
-    for (let y = nums.length * 2 - 1; y >= 0; y--) {
-        let x = y % nums.length;
-        // Pop elements from stack that are less than or equal to the current element
-        while (top !== -1 && stack[top] <= nums[x]) {
-            top--;
+    for (let x = n - 1; x >= 0; x--) {
+        let currentEle = arr[x];
+        while (stack.length > 0 && stack[stack.length - 1] <= currentEle) {
+            stack.pop();
         }
-
-        // If stack is not empty, the top element is the next greater element
-        if (top !== -1) {
-            result[x] = stack[top];
-        } else {
-            result[x] = -1;
+        if (stack.length > 0) {
+            result[x] = stack[stack.length - 1];
         }
-
-        // Push current element to the stack
-        stack[++top] = nums[x];
-
-        // Map the current element to its next greater element
-        map[nums[x]] = result[x];
+        stack.push(currentEle);
     }
-    return result;
+
+    return result.slice(0, nums.length);
 };
