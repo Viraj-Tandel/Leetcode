@@ -26,4 +26,6 @@ var guessNumber = function (n) {
             return middle;
         }
     }
+
+    return -1;
 };
