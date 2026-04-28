@@ -3,52 +3,33 @@
  * @param {number} target
  * @return {number}
  */
-var search = function (nums, target) {
-    // let left = 0;
-    // let right = nums.length - 1;
+var search = function (a, target) {
+    let l = 0;
+    let r = a.length - 1;
 
-    // while (left <= right) {
-    //     let mid = Math.floor((left + right) / 2);
+    while (l <= r) {
+        let m = l + Math.floor((r - l) / 2);
 
-    //     if (nums[mid] == target) {
-    //         return mid;
-    //     } else if (nums[left] <= nums[mid]) {
-    //         if (nums[left] <= target && target <= nums[mid]) {
-    //             right = mid - 1;
-    //         } else {
-    //             left = mid + 1;
-    //         }
-    //     } else {
-    //         if (nums[mid] <= target && target <= nums[right]) {
-    //             left = mid + 1;
-    //         } else {
-    //             right = mid - 1;
-    //         }
-    //     }
-    // }
-    // return -1;
-
-    // * practise solve 31/8/2025
-
-    let left = 0;
-    let right = nums.length - 1;
-
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
-
-        if (nums[mid] == target) {
-            return mid;
-        } else if (nums[left] <= nums[mid]) {
-            if (nums[left] <= target && target <= nums[mid]) {
-                right = mid - 1;
+        // mid is the target element then return the index
+        if (a[m] == target) {
+            return m;
+        }
+        // Check which side sorted?
+        // left side sorted
+        if (a[l] <= a[m]) {
+            // checking if target element exist on sorted side or not and updating the left and right based on that
+            if (target < a[m] && target >= a[l]) {
+                r = m - 1;
             } else {
-                left = mid + 1;
+                l = m + 1;
             }
-        } else {
-            if (nums[mid] <= target && target <= nums[right]) {
-                left = mid + 1;
+        }
+        // right side sorted
+        else {
+            if (target > a[m] && target <= a[r]) {
+                l = m + 1;
             } else {
-                right = mid - 1;
+                r = m - 1;
             }
         }
     }
