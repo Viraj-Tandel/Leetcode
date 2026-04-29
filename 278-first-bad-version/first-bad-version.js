@@ -20,19 +20,17 @@ var solution = function (isBadVersion) {
     return function (n) {
         let l = 1;
         let r = n;
-        let badVersion;
 
-        while (l <= r) {
+        while (l < r) {
             let m = l + Math.floor((r - l) / 2);
 
             if (isBadVersion(m)) {
-                badVersion = m;
-                r = m - 1;
+                r = m;
             } else {
                 l = m + 1;
             }
         }
 
-        return badVersion;
+        return r;
     };
 };
