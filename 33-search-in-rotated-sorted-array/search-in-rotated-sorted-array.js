@@ -10,25 +10,26 @@ var search = function (a, target) {
     while (l <= r) {
         let m = l + Math.floor((r - l) / 2);
 
-        // mid is the target element then return the index
+        // return index if target is at mid index
         if (a[m] == target) {
             return m;
         }
-        // Check which side sorted?
-        // left side sorted
+
+        // when left side is sorted
         if (a[l] <= a[m]) {
-            // checking if target element exist on sorted side or not and updating the left and right based on that
-            if (target < a[m] && target >= a[l]) {
+            if (target >= a[l] && target < a[m]) {
+                // move right pointer
                 r = m - 1;
             } else {
+                // this means target exsit in another unsorted part
                 l = m + 1;
             }
-        }
-        // right side sorted
-        else {
+        } else {
+            // exist in right half
             if (target > a[m] && target <= a[r]) {
                 l = m + 1;
             } else {
+                // exisit towrds the left side of right half
                 r = m - 1;
             }
         }
