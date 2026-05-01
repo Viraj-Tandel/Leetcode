@@ -2,21 +2,19 @@
  * @param {number[]} nums
  * @return {number}
  */
-var findPeakElement = function (nums) {
-    let left = 0;
-    let right = nums.length - 1;
+var findPeakElement = function (a) {
+    let l = 0;
+    let r = a.length - 1;
 
-    while (left < right) {
-        let mid = Math.floor((left + right) / 2);
+    while (l < r) {
+        let m = l + Math.floor((r - l) / 2);
 
-        // we compare middle with its next element
-        if (nums[mid] > nums[mid + 1]) {
-            // Peak is on the left side (including mid)
-            right = mid;
+        if (a[m + 1] > a[m]) {
+            l = m + 1;
         } else {
-            // Peak is on the right side (excluding mid)
-            left = mid + 1;
+            r = m;
         }
     }
-    return left;
+
+    return l;
 };
