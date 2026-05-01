@@ -21,11 +21,11 @@ var solution = function (isBadVersion) {
         let l = 1;
         let r = n;
 
-        while (l < r) {
+        while (l <= r) {
             let m = l + Math.floor((r - l) / 2);
 
             if (isBadVersion(m)) {
-                r = m;
+                r = m - 1;
             } else {
                 l = m + 1;
             }
