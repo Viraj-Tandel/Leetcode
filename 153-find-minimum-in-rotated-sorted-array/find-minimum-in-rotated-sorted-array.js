@@ -17,11 +17,9 @@ var findMin = function (a) {
             return a[l];
         }
         let m = l + Math.floor((r - l) / 2);
-        console.log("m", m, "a[m]---", a[m], "a[m-1]", a[m - 1])
 
         // Mid is rotation point if less than its previous elment like [7 0 1 2 3...] 
         if (a[m] < a[m - 1]) {
-            console.log("Rotation point found---->", l)
             return a[m];
         }
         // Left part is sorted then right side is unsorted sp answer lies in the right part
