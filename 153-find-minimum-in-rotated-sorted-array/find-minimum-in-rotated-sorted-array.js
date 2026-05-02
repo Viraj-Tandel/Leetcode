@@ -7,12 +7,8 @@ var findMin = function (a) {
     let l = 0;
     let r = a.length - 1;
 
-    // EDGE CASE ARRAY ALREADY SORTED
-    if (a[l] <= a[r]) {
-        return a[l];
-    }
-
     while (l <= r) {
+        // EDGE CASE ARRAY ALREADY SORTED
         if (a[l] <= a[r]) {
             return a[l];
         }
