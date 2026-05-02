@@ -2,35 +2,33 @@
  * @param {number[]} nums
  * @return {number}
  */
-var findMin = function (nums) {
-    // let left = 0;
-    // let right = nums.length - 1;
+var findMin = function (a) {
 
-    // while (left < right) {
-    //     let mid = Math.floor((left + right) / 2);
+    let l = 0;
+    let r = a.length - 1;
 
-    //     if (nums[mid] > nums[right]) {
-    //         left = mid + 1;
-    //     } else {
-    //         right = mid;
-    //     }
-    // }
-
-    // return nums[left];
-
-    // * Practice solve 3/9/1999
-    let left = 0;
-    let right = nums.length - 1;
-
-    while (left < right) {
-        let mid = Math.floor((left + right) / 2);
-
-        if (nums[mid] > nums[right]) {
-            left = mid + 1;
-        } else {
-            right = mid;
-        }
+    // EDGE CASE ARRAY ALREADY SORTED
+    if (a[l] <= a[r]) {
+        return a[l];
     }
 
-    return nums[left];
+    while (l <= r) {
+        if (a[l] <= a[r]) {
+            return a[l];
+        }
+        let m = l + Math.floor((r - l) / 2);
+        console.log("m", m, "a[m]---", a[m], "a[m-1]", a[m - 1])
+
+        // Mid is rotation point if less than its previous elment like [7 0 1 2 3...] 
+        if (a[m] < a[m - 1]) {
+            console.log("Rotation point found---->", l)
+            return a[m];
+        }
+        // Left part is sorted then right side is unsorted sp answer lies in the right part
+        if (a[l] <= a[m]) {
+            l = m + 1;
+        } else {
+            r = m - 1;
+        }
+    }
 };
