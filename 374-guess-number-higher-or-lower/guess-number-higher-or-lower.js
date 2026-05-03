@@ -18,20 +18,14 @@ var guessNumber = function (n) {
     while (l <= r) {
         let m = l + Math.floor((r - l) / 2);
 
-        // mid is higher than the picked number so reducing search space towards left
-        if (guess(m) == -1) {
-            r = m - 1;
-        }
-        // mid is lower than the picked number so reducing search space towards right
-        else if (guess(m) == 1) {
-            l = m + 1;
-        }
-        // mid is the picked number
-        else {
+        if (guess(m) == 0) {
             return m;
         }
-    }
 
-    // as per the problem there always a answer exist but just return as per problem return type
-    return -1;
+        if (guess(m) == 1) {
+            l = m + 1;
+        } else { // -1
+            r = m - 1;
+        }
+    }
 };
