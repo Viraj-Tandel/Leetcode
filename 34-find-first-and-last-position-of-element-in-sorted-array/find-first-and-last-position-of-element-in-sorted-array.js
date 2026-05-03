@@ -3,93 +3,37 @@
  * @param {number} target
  * @return {number[]}
  */
-var searchRange = function (nums, target) {
-    // if (nums.length == 0) {
-    //     return [-1, -1];
-    // }
-    // if (nums.length == 1) {
-    //     return nums[0] == target ? [0, 0] : [-1, -1];
-    // }
+var searchRange = function (a, target) {
+    let l = 0;
+    let r = a.length - 1;
+    let ans = [-1, -1];
 
-    // let firstIndex = -1;
-    // let lastIndex = -1;
-    // let left = 0;
-    // let right = nums.length - 1;
+    while (l < r) {
+        let m = l + Math.floor((r - l) / 2);
 
-    // while (left <= right) {
-    //     let mid = Math.floor((left + right) / 2);
-
-    //     if (nums[mid] == target) {
-    //         firstIndex = mid
-    //         right = mid - 1;
-    //     } else if (nums[mid] < target) {
-    //         left = mid + 1;
-    //     } else {
-    //         right = mid - 1;
-    //     }
-    // }
-
-    // left = 0;
-    // right = nums.length - 1;
-
-    // if (firstIndex == -1)
-    //     return [-1, -1];
-
-    // while (left <= right) {
-    //     let mid = Math.floor((left + right) / 2);
-
-    //     if (nums[mid] == target) {
-    //         lastIndex = mid
-    //         left = mid + 1;
-    //     } else if (nums[mid] < target) {
-    //         left = mid + 1;
-    //     } else {
-    //         right = mid - 1;
-    //     }
-    // }
-
-    // return [firstIndex, lastIndex];
-
-
-    // * PRACTISE RESOLVE -----> 6/9/2025
-
-    if (nums.length == 0) {
+        if (a[m] < target) {
+            l = m + 1;
+        } else {
+            r = m;
+        }
+    }
+    if (a[l] != target) {
         return [-1, -1];
     }
+    ans[0] = l;
 
-    let firstIndex = -1;
-    let lastIndex = -1;
+    l = 0;
+    r = a.length - 1;
+    while (l < r) {
+        let m = l + Math.ceil((r - l) / 2);
 
-    let left = 0;
-    let right = nums.length - 1;
-
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
-        if (nums[mid] == target) {
-            firstIndex = mid;
-            right = mid - 1;
-        } else if (nums[mid] < target) {
-            left = mid + 1;
+        if (a[m] > target) {
+            r = m - 1;
         } else {
-            right = mid - 1;
+            l = m;
         }
     }
+    ans[1] = l;
 
-    left = 0;
-    right = nums.length - 1;
-
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
-
-        if (nums[mid] == target) {
-            lastIndex = mid;
-            left = mid + 1;
-        } else if (nums[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-
-    return [firstIndex, lastIndex];
+    return ans;
 };
