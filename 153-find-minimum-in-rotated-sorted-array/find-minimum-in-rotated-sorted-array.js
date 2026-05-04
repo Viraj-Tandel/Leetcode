@@ -3,6 +3,8 @@
  * @return {number}
  */
 var findMin = function (a) {
+
+    // Revised Solution (4/5/2026)
     let l = 0;
     let r = a.length - 1;
 
