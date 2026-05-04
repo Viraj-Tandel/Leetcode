@@ -18,19 +18,24 @@ var solution = function (isBadVersion) {
      * @return {integer} The first bad version
      */
     return function (n) {
+        if (n < 2) {
+            return n;
+        }
         let l = 1;
         let r = n;
 
-        while (l <= r) {
+        while (l < r) {
             let m = l + Math.floor((r - l) / 2);
 
+            // bad version found we will shrink from 
             if (isBadVersion(m)) {
-                r = m - 1;
+                r = m;
             } else {
                 l = m + 1;
             }
-        }
 
+        }
         return l;
+
     };
 };
