@@ -3,9 +3,9 @@
  * @return {number}
  */
 var findPeakElement = function (a) {
-    if (a.length == 1) {
-        return 0;
-    }
+    // if (a.length == 1) {
+    //     return 0;
+    // }
 
     let l = 0;
     let r = a.length - 1;
@@ -20,5 +20,5 @@ var findPeakElement = function (a) {
         }
     }
 
-    return l;
+    return r;
 };
