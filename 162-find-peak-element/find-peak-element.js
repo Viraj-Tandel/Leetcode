@@ -3,6 +3,10 @@
  * @return {number}
  */
 var findPeakElement = function (a) {
+    if (a.length == 1) {
+        return 0;
+    }
+
     let l = 0;
     let r = a.length - 1;
 
@@ -16,6 +20,5 @@ var findPeakElement = function (a) {
         }
     }
 
-    // retunr l/r both are on same index
     return l;
 };
