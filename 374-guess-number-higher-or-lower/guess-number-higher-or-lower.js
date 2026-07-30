@@ -18,14 +18,19 @@ var guessNumber = function (n) {
     while (l <= r) {
         let m = l + Math.floor((r - l) / 2);
 
+        // picked found
         if (guess(m) == 0) {
-            return m;
+            return m
         }
 
-        if (guess(m) == 1) {
-            l = m + 1;
-        } else { // -1
+        // picked is less than mid
+        else if (guess(m) == -1) {
             r = m - 1;
+        }
+
+        // picked is grerater than mid
+        else {
+            l = m + 1;
         }
     }
 };
